@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export const AddCategory = () => {
+export const AddCategory = ({ onNewCategory }) => {
   const [inputValue, setInputValue] = useState("");
 
   const onInputChange = (e) => {
@@ -8,10 +8,14 @@ export const AddCategory = () => {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
-    console.log(e);
-  }
+    if (inputValue) {
+      // setCategories((categories) => [inputValue, ...categories]);
+      onNewCategory( inputValue.trim() );
+      setInputValue("");
+    }
+  };
 
   return (
     <form onSubmit={handleSubmit}>
@@ -24,3 +28,4 @@ export const AddCategory = () => {
     </form>
   );
 };
+ 
